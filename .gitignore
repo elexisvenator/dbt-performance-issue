@@ -1,0 +1,13 @@
+# vscode
+.vscode/
+*.code-workspace
+
+# dbt
+target/
+dbt_modules/
+logs/
+
+# execution environment (Python Virtual Env)
+virtualenv_dbt/
+virtualenv_rdl/
+

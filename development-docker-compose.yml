@@ -1,0 +1,25 @@
+version: "3"
+services:
+  datawarehouse_db:
+    build:  
+      context: ./datawarehouse_db/
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: dbt 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres || exit 1"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+    ports: 
+      - "5433:5432" #postgres on localhost:5433
+  data_pipeline:
+    build:  
+      context: .
+      dockerfile: development.dockerfile
+    depends_on:
+        - datawarehouse_db
+    volumes:
+      - ./transform:/home/local/transform

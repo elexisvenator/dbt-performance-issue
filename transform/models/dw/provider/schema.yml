@@ -1,0 +1,12 @@
+dim_provider:
+    constraints:
+        not_null:
+            - provider_id
+        unique:
+            - provider_id
+        relationships:
+            - {from: position_id, to: ref('dim_position'), field: position_id}
+            - {from: parent_position_id, to: ref('dim_position'), field: position_id}
+        pageup_dbt_utils.null_when_parent_column_null:
+            - {parent: position_id, dependant: position_name}
+            - {parent: parent_position_id, dependant: parent_position_name}

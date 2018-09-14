@@ -1,0 +1,19 @@
+bridge_position_hierarchy:
+    constraints:
+        not_null:
+            - superior_position_id
+            - subordinate_position_id
+            - levels_apart
+        relationships:
+            - {from: superior_position_id, to: ref('dim_position'), field: position_id}
+            - {from: subordinate_position_id, to: ref('dim_position'), field: position_id}
+dim_position:
+    constraints:
+        not_null:
+            - position_id
+        unique:
+            - position_id
+        relationships:
+            - {from: parent_position_id, to: ref('dim_position'), field: position_id}
+        pageup_dbt_utils.null_when_parent_column_null:
+            - {parent: parent_position_id, dependant: parent_position_name}

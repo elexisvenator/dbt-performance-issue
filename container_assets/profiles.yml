@@ -1,0 +1,16 @@
+
+# For more information on how to configure this file, please see:
+# https://github.com/fishtown-analytics/dbt/blob/master/sample.profiles.yml
+
+performance_test:
+  outputs:
+    dev:
+      type: postgres
+      threads: 4
+      host: datawarehouse_db
+      port: 5432
+      user: docker
+      pass: docker
+      dbname: dbt
+      schema: dbt
+  target: dev

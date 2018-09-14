@@ -1,0 +1,8 @@
+position_id,name,parent_position_id
+1,position1 superior-only,
+2,position2 superior-and-subordinate reports to position1,1
+3,position3 subordinate-only reports to position2,2
+4,position4 subordinate-only reports to position2,2
+5,position5 superior-only sibling,
+6,position6 circular reporting to 7,7
+7,position7 circular reporting to 6,6
